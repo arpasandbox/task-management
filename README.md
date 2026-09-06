@@ -1,59 +1,41 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Management System (ClickUp-style)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
 
-## About Laravel
+A full-stack task management application built as a personal portfolio project, inspired by platforms such as ClickUp. The project was created to demonstrate practical, unrestricted Laravel development skills outside of client work, where previous professional projects are subject to NDAs.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application focuses on real-world project and task management workflows, including hierarchical organization, permissions, task collaboration, notifications, and an interactive Kanban experience.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## My Role
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Sole developer.** I designed the database architecture, built the backend and frontend, and implemented the entire feature set independently.
 
-## Learning Laravel
+This included authentication, authorization and permissions, workspace and project management, task workflows, collaboration features, notifications, and the drag-and-drop Kanban interface.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Hierarchical organization:** Workspaces → Projects → Tasks → Subtasks
+- **Task management:** Title, description, assignee, due date, priority, status, and tags
+- **Multiple views:** List view and interactive Kanban board
+- **Drag-and-drop:** Reorder and update task status directly from the Kanban board
+- **Task collaboration:** Comments and activity history per task
+- **Notifications:** In-app notifications for relevant task and project activity
+- **Role-based permissions:** Owner / Member / Viewer
+- **Custom authentication flow:** Register → automatic login → mandatory first-login password change → mandatory first workspace creation → dashboard
+- **Workspace-based access control:** Permissions and visibility are handled according to the user's role within each workspace
 
-## Laravel Sponsors
+## Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Backend:** Laravel with session-based authentication
+- **Frontend:** Blade, Livewire, jQuery, Tailwind CSS
+- **Drag-and-drop:** SortableJS
+- **Database:** MySQL
+- **Authentication:** Custom Laravel authentication flow without Breeze or Fortify scaffolding
 
-### Premium Partners
+## Notes
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Authentication was intentionally implemented from the ground up rather than relying on Laravel starter kits such as Breeze or Fortify. This was a deliberate decision to demonstrate a practical understanding of Laravel's authentication and authorization mechanisms, session handling, middleware, validation, and application flow.
 
-## Contributing
+The application uses **session-based authentication** rather than Sanctum because it is designed as a single-domain application without a separate API layer. This keeps the architecture appropriate to the project's requirements while avoiding unnecessary complexity.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project was also designed to demonstrate how Laravel can be used to build a complete, production-style application from the database layer through to the interactive frontend, rather than functioning as a simple CRUD demonstration.
