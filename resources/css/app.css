@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-brand: #fb923c;
+    --color-brand-light: #fdba74;
+    --color-surface: #fff7ed;
+    --color-ink: #1f2937;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer components {
+    .tms-input {
+        @apply w-full rounded-md border border-brand-light bg-white px-3 py-2 text-sm text-ink shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand;
+    }
+
+    .tms-btn-primary {
+        @apply rounded-md bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90;
+    }
+
+    .tms-btn-secondary {
+        @apply rounded-md border border-brand-light bg-white px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-brand-light/30;
+    }
+
+    .tms-link {
+        @apply font-medium text-brand hover:text-brand/80 hover:underline;
+    }
+
+    .tms-muted {
+        @apply text-ink/60;
+    }
+
+    .tms-circle {
+        @apply inline-grid place-items-center rounded-full text-center leading-none;
+
+        & svg {
+            display: block;
+        }
+    }
+
+    .tms-circle-count {
+        @apply inline-grid h-6 w-6 shrink-0 place-items-center rounded-full text-center text-xs font-semibold tabular-nums;
+        line-height: 1;
+        padding: 0;
+    }
+
+    .tms-circle-count-sm {
+        @apply inline-grid h-4 w-4 shrink-0 place-items-center rounded-full text-center text-[10px] font-semibold tabular-nums;
+        line-height: 1;
+        padding: 0;
+    }
+}
+
+.kanban-ghost {
+    opacity: 0.4;
+}
+
+.kanban-chosen {
+    cursor: grabbing;
+}
+
+.kanban-drag {
+    opacity: 0.9;
+}
