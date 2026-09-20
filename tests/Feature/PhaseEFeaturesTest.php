@@ -76,6 +76,45 @@ class PhaseEFeaturesTest extends TestCase
         $this->assertEquals(2, $user->fresh()->workspaces()->count());
     }
 
+    public function test_owner_can_add_member_from_workspace_menu(): void
+    {
+        [$user, $workspace] = $this->userWithWorkspace();
+        $member = User::factory()->create(['email' => 'member@example.com']);
+
+        $this->actingAs($user);
+
+        Livewire::test(Switcher::class)
+            ->call('openAddMemberModal', $workspace->id)
+            ->set('memberEmail', $member->email)
+            ->call('addMember')
+            ->assertSet('activeModal', null);
+
+        $this->assertTrue($workspace->members()->whereKey($member->id)->exists());
+    }
+
+    public function test_owner_can_delete_workspace_when_they_have_another(): void
+    {
+        [$user, $firstWorkspace] = $this->userWithWorkspace();
+
+        $secondWorkspace = Workspace::create([
+            'name' => 'Second Workspace',
+            'slug' => 'second-workspace',
+            'owner_id' => $user->id,
+        ]);
+        $secondWorkspace->members()->attach($user->id, ['role' => 'owner']);
+        WorkspaceStatusSeeder::seedForWorkspace($secondWorkspace);
+
+        $this->actingAs($user);
+        CurrentWorkspace::remember($firstWorkspace);
+
+        Livewire::test(Switcher::class)
+            ->call('deleteWorkspace', $firstWorkspace->id)
+            ->assertRedirect(route('dashboard'));
+
+        $this->assertDatabaseMissing('workspaces', ['id' => $firstWorkspace->id]);
+        $this->assertEquals($secondWorkspace->id, CurrentWorkspace::resolve()?->id);
+    }
+
     public function test_task_create_logs_activity(): void
     {
         [$user, $workspace] = $this->userWithWorkspace();
